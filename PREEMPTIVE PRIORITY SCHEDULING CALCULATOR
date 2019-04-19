@@ -1,0 +1,167 @@
+#include<stdio.h>
+#include<conio.h>
+ int main()
+ {
+ 	const int max=30;
+ 	char first[12],last[12],feed1[100],q[2],b[12],d[100];
+ 	int te=0,a,w,i,n,temp,j,pos,pr[max],qq[max],at[max],tat[max],ll[max];
+ 	float ta=0,aw=0; 
+
+
+		printf("\t \t \t \t \t   ....................................................                             \n");
+		printf("\t \t \t \t \t   |====>PREEMPTIVE PRIORITY SCHEDULING CALCULATOR<====|                             \n");
+        printf("\t \t \t \t \t   .....................................................                              \n");
+    printf("ENTER YOUR DETAIL TO ACCESS THE CALCULATOR:");
+    printf("\nenter your first name:\n");
+    gets(first);
+    fflush(stdin);
+	printf("\nenter your last name:\n");
+    gets(last);
+    printf("\n!!!!!!!!!!!!!!!!!!!!!!!!!!       DONT FORGET TO FIVE US FEEDBACK MR.%s %s",first,last); 
+	printf("  AT LAST     !!!!!!!!!!!!!!!!!!!!!!!!\n");
+ 	printf("\n\n\t\t\tKNOW DETAIL ABOUT THE SCHEDULING CALCULATOR ");
+ 	fflush(stdin);
+
+ 		printf("\n\n\t\t=============> PRIORITY SCHEDULING<=============\n\n");
+ 		printf("\n Priority scheduling is a non-preemptive algorithm and one of the most common scheduling algorithms in batch systems.\n Each process is assigned a priority.\n Process with the highest priority is to be executed first and so on.\n Processes with the same priority are executed on first come first served basis.\n Priority can be decided based on memory requirements, time requirements or any other resource requirement.");
+ 		printf("\n\n");
+ 		printf("\n \n ===>1....BURST TIME::");
+ 		printf("CPU burst is when the process is being executed in the CPU.\n I/O burst is when the CPU is waiting for I/O for further execution.");
+		printf("\n \n\n===>2...ARRIVAL TIME::");
+		printf("It is the time at which a process arrives at the ready queue");
+		printf("\n\n \n ===>3....COMPLETION TIME::");
+		printf("It is the time at which a process completes its execution");
+		printf("\n \n\n ===>4....WAITING TIME::");
+		printf("\n waiting time is how much time a process spends in the ready queue waiting for theifr turn to get on the cpu");
+		printf("\n \n Waiting Time is calculated by ::");
+		printf("TURN AROUND TIME - BURST TIME ");	
+		
+		printf("\n \n\n ===>5....TURN AROUND TIME::");
+		printf("\n Turn Around Time is Time required for a particular process to complete from submission time to completion");
+		printf("\n \n Turn Around Time  is calculated by ::");
+		printf("TURN AROUND TIME - BURST TIME ");	
+		printf("\n");
+ 		printf("\n");
+ 		printf("\t \t \t NOW PRESS ANY KEY TO CONTINUE TO START CALCULATOR OR PRESS (N/n) TO END HERE: ");
+ 		gets(q); 
+ 		if(q=="N" || q=="n")
+ 		{
+ 		printf("\n\n============>THANKS FOR USING OUR CALCULATOR<=====================");
+    printf("\n\n=======>ENTER YOUR FEEDBACK HERE: ");
+    gets(feed1);	
+		 }
+		 else
+		 {
+		loop3:
+	printf("\n \n enter the number of process :: ");
+ 	scanf("%d",&n);
+    printf("\n \t \t \t \t  ENTER THE BURST TIME:- ");
+ 	for(i=0;i<n;i++)
+ 	{
+ 	 printf("\nenter the burst time of process %d ::",i);
+	 scanf("%d",&qq[i]);
+	 }
+	 
+    printf("\n \t \t \t \tENTER THE PRIORITY:-");
+ 	for(i=0;i<n;i++)
+ 	{
+ 			printf("\n enter priority of process %d ::",i);
+	 scanf("%d",&pr[i]);
+
+	 }
+	 
+	printf("\n \t \t \t \t ENTER THE ARRIVAL TIME:- ");
+ 	for(i=0;i<n;i++)
+ 	{ 
+	printf("\n enter the arrival time of process %d ::",i);
+	 scanf("%d",&at[i]);
+	}
+printf("\n\n\n ------------------------------------------------------------------------------------------------------------------------------------");
+
+	 
+	  for(i=0;i<n;i++)
+	  {
+	  	pos=i;
+	    for(j=i+1;j<n;j++) 
+		{
+	    	if(pr[j]<pr[pos])
+	    	{
+			pos=j;
+			te==1;
+			
+		    }
+		}
+			
+		temp=pr[i];
+		pr[i]=pr[pos];
+		pr[pos]=temp; 
+	    
+	    temp=qq[i];
+		qq[i]=qq[pos];
+		qq[pos]=temp; 
+	    
+	    temp=at[i];
+		at[i]=at[pos];
+		at[pos]=temp; 
+	  }
+	 ll[0]=0;
+	 
+	printf("\n \n process \tburst time \t \t priority \t \t arrival time \t \twaiting time \t \tturn around time \n");
+	printf("\n ------------------------------------------------------------------------------------------------------------------------------------");
+	for(i=0;i<n;i++)
+	{
+		ll[i]=0;
+		if(te==1)
+		{
+		ll[i]+=2;
+		pr[i]=pr[i]*2;
+		
+		}
+		
+		tat[i]=0;
+	
+		for(j=0;j<i;j++)
+		{
+		ll[i]=ll[i]+qq[j];	
+		}
+		tat[i]=ll[i]+qq[i];
+		aw=aw+ll[i];
+		ta=ta+tat[i];
+	printf("\n    %d\t \t %d\t\t\t   %d\t\t\t %d \t\t\t %d \t\t\t\t\t%d \n",i,qq[i],pr[i],at[i],ll[i],tat[i]);
+	}
+ 	 aw=aw/n;
+ 	 ta=ta/n;
+ 	 	printf("\n ------------------------------------------------------------------------------------------------------------------------------------");
+
+	  printf("\n\n\n************************************************************************");
+ 	printf("\n average waiting time is :: %f\n",aw);
+	printf("\n average turnaround time is :: %f\n",ta);
+	printf("************************************************************************");
+	printf("\n\n\n\t\t\t\t==>enter 1 to continue CALCULTOR:");
+	printf("\n\t\t\t\t==>enter any charcter to end CALCULATOR:");
+	printf("\n\t \t \t\t\t\t\t==> CHOOSE ANY FROM ABOVE:-");
+	scanf("%d",&w);
+	switch(w)
+	{
+		case 1:
+			
+			 goto loop3;	
+			
+		default:
+			{
+			printf("\n\n============>THANKS FOR USING OUR CALCULATOR<=====================");
+    printf("\n\n=======>ENTER YOUR FEEDBACK HERE: ");
+    fflush(stdin);
+    gets(d);
+    printf("\n\t--------------------------------------------------------press any key double to save-----------------------------------------------");
+	getch();
+	getch();
+	printf("\n\n\n\n\t\t*********************!!!!!******* FEEDBACK SAVED THANKS FOR FEEDBACK ********!!!!!*************************\n\n\n\n\n");	
+			}
+	}
+		 }
+return 0;
+ }
+ 
+ 
+
